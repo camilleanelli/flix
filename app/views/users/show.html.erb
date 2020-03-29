@@ -1,0 +1,36 @@
+<section class="user">
+  <%= profile_image(@user) %>
+  <%= @user.name %>
+  <%= mail_to @user.email %>
+  <br>
+  Member since <%= @user.created_at.strftime("%B %Y")%>
+</section>
+<section>
+
+  <% if @reviews.present? %>
+    <h2>Les commentaires </h2>
+    <% @reviews.each do |review| %>
+      <%= link_to review.movie.title, movie_path(review.movie) %>
+      <%= render "shared/stars", percent: review.stars_as_percent %>
+      <span class="date">
+      <%= time_ago_in_words review.created_at %>
+      </span>
+      <%= review.comment %>
+    <% end %>
+  <% end %>
+</section>
+<section>
+  <% if @movies.present? %>
+    <% @movies.each do |movie| %>
+      <%= link_to image_tag(movie.image_file_name), movie_path(movie) %>
+    <% end %>
+  <% end %>
+</section>
+  <div class="actions">
+    <% if current_user?(@user) %>
+      <%= link_to 'Edit Account', edit_user_path(@user), class: "button edit" %>
+    <% end %>
+    <% if current_user_admin? %>
+      <%= link_to "Delete Account", @user, method: :delete, data: { confirm: "Are you sure ? "} %>
+    <% end %>
+  </div>

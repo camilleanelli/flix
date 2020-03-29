@@ -1,0 +1,12 @@
+<%= form_with url: session_path do |f| %>
+  <%= f.label :email_or_username %>
+  <%= f.text_field :email_or_username, required: true %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true %>
+
+  <%= f.submit "Sign in" %>
+  <%= link_to 'Sign up if no account', signup_path, class: "button" %>
+<% end %>
+
+

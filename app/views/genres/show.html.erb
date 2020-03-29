@@ -1,0 +1,4 @@
+<h1><%= @genre.name %></h1>
+<% @movies.each do |movie| %>
+  <%= link_to movie.title, movie_path(movie) %>
+<% end %>

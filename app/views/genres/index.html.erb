@@ -1,0 +1,9 @@
+<h1>Genres </h1>
+<% @genres.each do |genre| %>
+  <%= link_to genre.name, genre %>
+  <%= time_ago_in_words genre.created_at %>
+<% end %>
+
+<section>
+  <%= link_to 'Add more genres', new_genre_path %>
+</section>

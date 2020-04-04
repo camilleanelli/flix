@@ -7,7 +7,7 @@
     <span class="stars">
       <%= render 'shared/stars', percent: movie.average_stars_as_percent %>
     </span>
-    <%= image_tag movie.image_file_name %>
+    <%= main_image movie %>
     <h3>
       <%= total_gross_value(movie) %>
     </h3>

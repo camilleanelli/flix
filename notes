@@ -1,0 +1,2 @@
+- active storage : genère un model de jointure qui correspond on nom de l'objet concerné, et relié au blob et a l'objet
+- il genère également le blob aui contient toutes les informations du fichier

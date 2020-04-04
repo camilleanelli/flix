@@ -22,7 +22,7 @@
 <section>
   <% if @movies.present? %>
     <% @movies.each do |movie| %>
-      <%= link_to image_tag(movie.image_file_name), movie_path(movie) %>
+      <%= link_to main_image(movie), movie_path(movie) %>
     <% end %>
   <% end %>
 </section>

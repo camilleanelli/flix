@@ -8,6 +8,7 @@ User.create(name: "camille", username: "cam", password: "password", email: "cam@
   end
 end
 
+
 Movie.create!([
   {
     title: 'Avengers: Endgame',
@@ -22,7 +23,6 @@ Movie.create!([
     total_gross: 1_223_641_414,
     director: 'Anthony Russo',
     duration: '181 min',
-    image_file_name: 'avengers-end-game.png'
   },
   {
     title: 'Captain Marvel',
@@ -35,7 +35,6 @@ Movie.create!([
     total_gross: 1_110_662_849,
     director: 'Anna Boden',
     duration: '124 min',
-    image_file_name: 'captain-marvel.png'
   },
   {
     title: 'Black Panther',
@@ -48,7 +47,6 @@ Movie.create!([
     total_gross: 1_346_913_161,
     director: 'Ryan Coogler',
     duration: '134 min',
-    image_file_name: 'black-panther.png'
   },
   {
     title: 'Avengers: Infinity War',
@@ -61,7 +59,6 @@ Movie.create!([
     total_gross: 2_048_359_754,
     director: 'Anthony Russo',
     duration: '149 min',
-    image_file_name: 'avengers-infinity-war.png'
   },
   {
     title: 'Green Lantern',
@@ -74,7 +71,6 @@ Movie.create!([
     total_gross: 219_851_172,
     director: 'Martin Campbell',
     duration: '114 min',
-    image_file_name: 'green-lantern.png'
   },
   {
     title: 'Fantastic Four',
@@ -87,7 +83,6 @@ Movie.create!([
     total_gross: 168_257_860,
     director: 'Josh Trank',
     duration: '100 min',
-    image_file_name: 'fantastic-four.png'
   },
   {
     title: 'Iron Man',
@@ -102,7 +97,6 @@ Movie.create!([
     total_gross: 585_366_247,
     director: 'Jon Favreau',
     duration: '126 min',
-    image_file_name: 'ironman.png'
   },
   {
     title: 'Superman',
@@ -117,7 +111,6 @@ Movie.create!([
     total_gross: 300_451_603,
     director: 'Richard Donner',
     duration: '143 min',
-    image_file_name: 'superman.png'
   },
   {
     title: 'Spider-Man',
@@ -133,7 +126,6 @@ Movie.create!([
     total_gross: 825_025_036,
     director: 'Sam Raimi',
     duration: '121 min',
-    image_file_name: 'spiderman.png'
   },
   {
     title: 'Batman',
@@ -147,7 +139,6 @@ Movie.create!([
     total_gross: 411_348_924,
     director: 'Tim Burton',
     duration: '126 min',
-    image_file_name: 'batman.png'
   },
   {
     title: "Catwoman",
@@ -160,7 +151,6 @@ Movie.create!([
     total_gross: 82_102_379,
     director: "Jean-Christophe 'Pitof' Comar",
     duration: "101 min",
-    image_file_name: "catwoman.png"
   },
   {
     title: "Wonder Woman",
@@ -173,7 +163,6 @@ Movie.create!([
     total_gross: 821_847_012,
     director: "Patty Jenkins",
     duration: "141 min",
-    image_file_name: "wonder-woman.png"
   }
 ])
 
@@ -184,5 +173,17 @@ Review.create([
 
 ["Action", "Fantasy", "Horror", "Comedy"].each do |name|
   Genre.find_or_create_by(name: name)
+end
+
+[
+"Captain Marvel", 
+"Black Panther",
+'Avengers: Infinity War',
+"Green Lantern",
+'Fantastic Four'
+].each do |title|
+  movie = Movie.find_by(title: title)
+  movie.main_image.attach(io: File.open("app/assets/images/#{title.parameterize}.png"), filename: title.parameterize + ".png")
+  movie.save
 end
 

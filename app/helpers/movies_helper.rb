@@ -32,7 +32,7 @@ module MoviesHelper
     if movie.main_image.attached?
       image_tag movie.main_image.variant(resize_to_limit: [60, 60]) 
     else
-      image_tag "logo"  
+      image_tag "logo.png"  
     end
 
   end
